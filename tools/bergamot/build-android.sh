@@ -28,7 +28,8 @@ CMAKE_VERSION="$(grep '^cmake ' "$REPO_ROOT/gradle/tools.versions.toml" | sed -E
 NDK="$SDK/ndk/$NDK_VERSION"
 CMAKE="$SDK/cmake/$CMAKE_VERSION/bin/cmake"
 NINJA="$SDK/cmake/$CMAKE_VERSION/bin/ninja"
-STRIP="$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-strip"
+# The NDK names its host folder linux-x86_64 or darwin-x86_64 (also on Apple silicon).
+STRIP="$NDK/toolchains/llvm/prebuilt/$(uname -s | tr '[:upper:]' '[:lower:]')-x86_64/bin/llvm-strip"
 for tool in "$CMAKE" "$NINJA" "$STRIP"; do
   [ -x "$tool" ] || { echo "Missing $tool — install NDK $NDK_VERSION and CMake $CMAKE_VERSION via the SDK manager." >&2; exit 1; }
 done
