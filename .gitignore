@@ -108,3 +108,6 @@ cloud/dist/
 
 # Geneticode Workbench scratch area.
 /tmp/
+
+# Local VS Code gateway file.
+/.vscode_gateway_port
