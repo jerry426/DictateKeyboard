@@ -108,7 +108,7 @@ object Restore {
     // Dictate's own application id (base, without the .debug/.beta variant suffixes) — a backup whose
     // metadata package starts with this is a genuine Dictate backup, not a "third-party" one. Was still
     // the upstream FlorisBoard id after the fork, which made every Dictate backup falsely warn.
-    const val PACKAGE_NAME = "net.devemperor.dictate"
+    const val PACKAGE_NAME = "dev.jerry426.dictate"
     const val BACKUP_ARCHIVE_FILE_NAME = "backup.zip"
     // The plain archive inside a password-protected one (issue #470), deleted again once it is unpacked.
     const val DECRYPTED_ARCHIVE_FILE_NAME = "decrypted_backup.zip"

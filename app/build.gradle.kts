@@ -68,7 +68,8 @@ configure<ApplicationExtension> {
     }
 
     defaultConfig {
-        applicationId = "net.devemperor.dictate"
+        // Fork: its own id, so it never collides with the Play Store app or its signing key.
+        applicationId = "dev.jerry426.dictate"
         minSdk = projectMinSdk.toInt()
         targetSdk = projectTargetSdk.toInt()
         versionCode = projectVersionCode.toInt()
@@ -83,8 +84,11 @@ configure<ApplicationExtension> {
         // incompatible on every emulator image, which rules out rehearsing a purchase on a throwaway
         // account. Real users pay nothing for it — the bundle is split per architecture, so a phone
         // only ever downloads the libraries it can run. See tools/fetch-sherpa-onnx.sh.
+        //
+        // Fork: arm64-v8a only. The fork is a sideloaded APK, not a split bundle, so every extra ABI
+        // is carried in full.
         ndk {
-            abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64")
+            abiFilters += listOf("arm64-v8a")
         }
 
         buildConfigField("String", "BUILD_COMMIT_HASH", "\"${getGitCommitHash().get()}\"")
@@ -320,7 +324,7 @@ val verifySherpaOnnxLibs by tasks.registering {
         // Must match the abiFilters above. A missing ABI here would not fail the build — it would
         // produce a split for that architecture carrying no sherpa-onnx at all, which installs
         // happily and then dies the first time on-device transcription or the VAD is touched.
-        for (abi in listOf("arm64-v8a", "armeabi-v7a", "x86_64")) {
+        for (abi in listOf("arm64-v8a")) {
             add(projectDir.file("src/main/jniLibs/$abi/libonnxruntime.so").asFile)
             add(projectDir.file("src/main/jniLibs/$abi/libonnxruntime4j_jni.so").asFile)
             add(projectDir.file("src/main/jniLibs/$abi/libsherpa-onnx-jni.so").asFile)
