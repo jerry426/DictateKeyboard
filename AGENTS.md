@@ -25,8 +25,10 @@ steps.
   `gradle/tools.versions.toml` and `gradle.properties`.
 - To build a debug APK, run `./gradlew :app:assembleDebug`.
 - To install on a USB-connected phone, run `./gradlew :app:installDebug`.
-- CMake and Rust are only needed for `tools/bergamot/build-android.sh`, not
-  for the Gradle build.
+- The build fails until two sets of native libraries exist. They are not in
+  git. After a fresh clone, run `tools/fetch-sherpa-onnx.sh` and
+  `tools/bergamot/build-android.sh`. The Bergamot build needs the SDK's
+  CMake package at the pinned version.
 
 ## Secrets
 
@@ -35,4 +37,7 @@ steps.
 
 ## Workspace
 
-- `tmp/` belongs to Geneticode Workbench. Ignore it.
+- `tmp/` is Workbench's scratch area for this repo, and git ignores it. Put
+  build logs and other temporary files there instead of the system temp
+  folder.
+- The keyboard only needs English. Don't spend effort on other languages.

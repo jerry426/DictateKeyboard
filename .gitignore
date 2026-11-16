@@ -105,3 +105,6 @@ cloud/.wrangler/
 .wrangler/
 cloud/.dev.vars
 cloud/dist/
+
+# Geneticode Workbench scratch area.
+/tmp/
