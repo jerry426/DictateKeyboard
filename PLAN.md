@@ -121,13 +121,12 @@ flowchart TD
 ## Steps
 
 Done: the fork is <https://github.com/jerry426/DictateKeyboard>, and the
-Android SDK is installed on the Mac.
+Android SDK is installed on the Mac. The app has its own package name,
+`dev.jerry426.dictate`, and a signed arm64-only release build.
 
-1. Build the debug APK unchanged and sideload it.
-2. Use it for a few days with OpenRouter, Azure batch, and Deepgram streaming.
+1. Use it for a few days with OpenRouter, Azure batch, and Deepgram streaming.
    This shows what actually needs changing.
-3. Give the app its own package name, so it never conflicts with upstream.
-4. Add `AzureSpeechRealtimeSession` and its settings, then test on the phone.
-5. Add the voice-first default and pinned models.
-6. Consider offering the Azure streaming session upstream as a pull request,
+2. Add `AzureSpeechRealtimeSession` and its settings, then test on the phone.
+3. Add the voice-first default and pinned models.
+4. Consider offering the Azure streaming session upstream as a pull request,
    so the fork stays small.

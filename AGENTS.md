@@ -25,6 +25,13 @@ steps.
   `gradle/tools.versions.toml` and `gradle.properties`.
 - To build a debug APK, run `./gradlew :app:assembleDebug`.
 - To install on a USB-connected phone, run `./gradlew :app:installDebug`.
+- To build the release APK the phone uses daily, run
+  `./gradlew :app:assembleRelease`, then install
+  `app/build/outputs/apk/release/app-release.apk` with `adb install -r`.
+  It is signed with the fork's own key, `~/.android/dictate-release.jks`,
+  through `keystore.properties`. Ignore the template's note about the Play
+  upload key; it applies only to upstream.
+- The app builds for `arm64-v8a` only.
 - The build fails until two sets of native libraries exist. They are not in
   git. After a fresh clone, run `tools/fetch-sherpa-onnx.sh` and
   `tools/bergamot/build-android.sh`. The Bergamot build needs the SDK's
